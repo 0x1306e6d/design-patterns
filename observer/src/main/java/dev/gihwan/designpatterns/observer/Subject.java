@@ -1,11 +1,11 @@
 package dev.gihwan.designpatterns.observer;
 
-public interface Subject {
+public interface Subject<T> {
 
-    void attach(Observer observer);
+    void attach(Observer<T> observer);
 
-    void detach(Observer observer);
+    void detach(Observer<T> observer);
 
-    void notifyToObservers();
+    void notifyToObservers(T value);
 
 }

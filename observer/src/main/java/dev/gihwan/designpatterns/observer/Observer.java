@@ -1,7 +1,7 @@
 package dev.gihwan.designpatterns.observer;
 
-public interface Observer {
+public interface Observer<T> {
 
-    void update();
+    void update(T value);
 
 }

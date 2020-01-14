@@ -3,22 +3,22 @@ package dev.gihwan.designpatterns.observer;
 import java.util.LinkedList;
 import java.util.List;
 
-public abstract class AbstractSubject implements Subject {
+public abstract class AbstractSubject<T> implements Subject<T> {
 
-    private final List<Observer> observers;
+    private final List<Observer<T>> observers;
 
     protected AbstractSubject() {
         this.observers = new LinkedList<>();
     }
 
     @Override
-    public void attach(Observer observer) {
+    public void attach(Observer<T> observer) {
         observers.add(observer);
         System.out.println("An observer " + observer + " is attached.");
     }
 
     @Override
-    public void detach(Observer observer) {
+    public void detach(Observer<T> observer) {
         final boolean removed = observers.remove(observer);
         if (removed) {
             System.out.println("An observer " + observer + " is detached.");
@@ -26,7 +26,7 @@ public abstract class AbstractSubject implements Subject {
     }
 
     @Override
-    public void notifyToObservers() {
-        observers.forEach(Observer::update);
+    public void notifyToObservers(T value) {
+        observers.forEach(observer -> observer.update(value));
     }
 }
